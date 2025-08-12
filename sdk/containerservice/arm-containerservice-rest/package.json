@@ -67,7 +67,7 @@
   "sideEffects": false,
   "autoPublish": false,
   "dependencies": {
-    "@azure-rest/core-client": "^1.0.0",
+    "@azure-rest/core-client": "^2.5.0",
     "@azure/abort-controller": "^2.1.2",
     "@azure/core-auth": "^1.9.0",
     "@azure/core-lro": "^3.1.0",
