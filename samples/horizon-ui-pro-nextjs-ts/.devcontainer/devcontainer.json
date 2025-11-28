@@ -1,0 +1,19 @@
+{
+  "name": "RULE Dashboard - Horizon UI Pro Sample",
+  "forwardPorts": [3000],
+  "postCreateCommand": "cd samples/horizon-ui-pro-nextjs-ts && npm install",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.cwd": "${containerWorkspaceFolder}/samples/horizon-ui-pro-nextjs-ts"
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "remoteEnv": {
+    "NPM_TOKEN": "${localEnv:NPM_TOKEN}"
+  }
+}
