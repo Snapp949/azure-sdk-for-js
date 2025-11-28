@@ -1,0 +1,32 @@
+# NPM Registry Configuration Template
+# Copy this file to .npmrc and fill in your values.
+# DO NOT commit .npmrc with actual tokens to source control.
+
+# =============================================================================
+# Horizon UI Pro Private Package Configuration
+# =============================================================================
+# To use the private @horizon-ui/react package:
+#
+# 1. Obtain access to the Horizon UI Pro npm package
+# 2. Get your npm token from your npm account or organization
+# 3. Copy this file to .npmrc: cp .npmrc.template .npmrc
+# 4. Replace YOUR_NPM_TOKEN_HERE with your actual token
+# 5. Run: npm install @horizon-ui/react
+#
+# For CI/CD:
+# - Set NPM_TOKEN as a secret in your CI environment
+# - The ${NPM_TOKEN} syntax below will use the environment variable
+
+# Registry configuration for @horizon-ui scope
+@horizon-ui:registry=https://registry.npmjs.org/
+//registry.npmjs.org/:_authToken=${NPM_TOKEN}
+
+# Alternative: Direct token (only use in local .npmrc, never commit)
+# //registry.npmjs.org/:_authToken=YOUR_NPM_TOKEN_HERE
+
+# =============================================================================
+# GitHub Packages Configuration (if using GitHub npm registry)
+# =============================================================================
+# Uncomment if the package is hosted on GitHub Packages:
+# @horizon-ui:registry=https://npm.pkg.github.com
+# //npm.pkg.github.com/:_authToken=${NPM_TOKEN}
