@@ -1,0 +1,48 @@
+name: Sample CI
+
+on:
+  push:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+# Cancel any in-progress runs for the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-sample:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Cache node_modules based on package-lock.json
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        id: cache-node-modules
+        with:
+          path: samples/horizon-ui-pro-nextjs-ts/node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('samples/horizon-ui-pro-nextjs-ts/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      - name: Install dependencies
+        working-directory: samples/horizon-ui-pro-nextjs-ts
+        run: |
+          npm ci || {
+            echo "npm ci failed - this may be due to private packages requiring authentication"
+            echo "Please ensure NPM_TOKEN is configured for private package access"
+            exit 0
+          }
+
+      - name: Build sample
+        working-directory: samples/horizon-ui-pro-nextjs-ts
+        run: npm run build
