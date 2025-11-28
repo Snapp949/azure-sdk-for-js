@@ -1,0 +1,15 @@
+{
+  "name": "Horizon UI Pro Next.js Sample",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "forwardPorts": [3000],
+  "remoteUser": "vscode",
+  "postCreateCommand": "cd samples/horizon-ui-pro-nextjs-ts && npm ci || echo 'npm ci failed - check for private packages or missing package-lock.json'",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}

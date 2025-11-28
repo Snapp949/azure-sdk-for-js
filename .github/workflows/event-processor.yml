@@ -12,11 +12,23 @@ on:
   pull_request_target:
     types: [closed, labeled, opened, reopened, review_requested, synchronize, unlabeled]
 
+# Cancel in-progress runs of the same workflow on the same ref
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 # This removes all unnecessary permissions, the ones needed will be set below.
 # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token
 permissions: {}
 
 jobs:
+  # Caching example for dotnet tools (uncomment to enable):
+  # - name: Cache dotnet tools
+  #   uses: actions/cache@v4
+  #   with:
+  #     path: ~/.dotnet/tools
+  #     key: ${{ runner.os }}-dotnet-tools-${{ hashFiles('.github/workflows/event-processor.yml') }}
+  #
   # This event requires the Azure CLI to get the LABEL_SERVICE_API_KEY from the vault.
   # Because the azure/login step adds time costly pre/post Az CLI commands to any every job
   # it's used in, split this into its own job so only the event that needs the Az CLI pays
