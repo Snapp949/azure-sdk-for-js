@@ -33,14 +33,6 @@ jobs:
           cache: 'npm'
           cache-dependency-path: samples/horizon-ui-pro-nextjs-ts/package-lock.json
 
-      - name: Cache node_modules
-        uses: actions/cache@v4
-        with:
-          path: samples/horizon-ui-pro-nextjs-ts/node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('samples/horizon-ui-pro-nextjs-ts/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
-
       - name: Install dependencies
         id: npm-install
         run: npm ci

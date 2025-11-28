@@ -1,5 +1,6 @@
 {
   "name": "Horizon UI Pro Sample (Next.js)",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
   "remoteUser": "codespace",
   "workspaceFolder": "/workspace",
   "forwardPorts": [3000],
