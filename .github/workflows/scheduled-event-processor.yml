@@ -20,10 +20,11 @@ on:
     #       When scheduling for multiple days the numeric days 0-6 (0=Sunday) must be used.
     - cron: '0 18 * * 1,3,5'
 
-# Cancel in-progress runs of the same workflow to avoid duplicate processing
+# Prevent concurrent runs of the same scheduled workflow to avoid overlap
+# Note: cancel-in-progress is false for scheduled workflows to ensure periodic tasks complete
 concurrency:
   group: ${{ github.workflow }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 # This removes all unnecessary permissions, the ones needed will be set below.
 # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token

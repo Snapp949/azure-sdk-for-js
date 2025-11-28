@@ -12,9 +12,9 @@ on:
   pull_request_target:
     types: [closed, labeled, opened, reopened, review_requested, synchronize, unlabeled]
 
-# Cancel in-progress runs of the same workflow on the same ref
+# Cancel in-progress runs of the same workflow on the same ref to avoid duplicate runs
 concurrency:
-  group: ${{ github.workflow }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 # This removes all unnecessary permissions, the ones needed will be set below.
