@@ -23,7 +23,7 @@ import type {
   ListingsApiResponse,
   TransactionResult,
   CreditScoreResult,
-} from '../types';
+} from '../shared-types';
 
 /**
  * Props for the Marketplace component.

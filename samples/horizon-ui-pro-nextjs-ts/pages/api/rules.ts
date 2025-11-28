@@ -9,7 +9,7 @@
 */
 
 import type { NextApiRequest, NextApiResponse } from 'next';
-import type { RuleState, Listing, TransactionResult, CreditScoreResult, Product } from '../../types';
+import type { RuleState, Listing, TransactionResult, CreditScoreResult, Product } from '../../shared-types';
 
 /** RULE to USD exchange rate (1 RULE = 100 USD for demo) */
 const RULE_TO_USD_RATE = 100;

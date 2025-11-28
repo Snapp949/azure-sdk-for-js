@@ -239,7 +239,7 @@ samples/horizon-ui-pro-nextjs-ts/
 │   │   └── rules.ts         # State management API
 │   ├── index.tsx            # Home page
 │   └── marketplace.tsx      # Marketplace page
-├── types/
+├── shared-types/
 │   └── index.ts             # Shared TypeScript types
 ├── public/                  # Static assets
 ├── .env.template            # Environment variables template
@@ -252,7 +252,7 @@ samples/horizon-ui-pro-nextjs-ts/
 
 ## TypeScript Types
 
-All shared types are in `types/index.ts`:
+All shared types are in `shared-types/index.ts`:
 
 - `CreditMatrixInput` - Input variables for credit scoring
 - `CreditScoreResult` - Computed credit score result

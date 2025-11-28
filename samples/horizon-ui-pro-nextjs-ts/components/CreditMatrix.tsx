@@ -21,8 +21,8 @@ import type {
   CreditMatrixInput,
   CreditScoreResult,
   CreditApiResponse,
-} from '../types';
-import { DEFAULT_CREDIT_MATRIX_INPUT } from '../types';
+} from '../shared-types';
+import { DEFAULT_CREDIT_MATRIX_INPUT } from '../shared-types';
 
 /**
  * Props for the CreditMatrix component.

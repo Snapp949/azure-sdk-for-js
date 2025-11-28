@@ -21,7 +21,7 @@ import type {
   ListingsApiResponse,
   BuyRequest,
   TransactionResult,
-} from '../../types';
+} from '../../shared-types';
 import {
   getRuleState,
   addTransaction,

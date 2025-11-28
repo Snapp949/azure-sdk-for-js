@@ -19,7 +19,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import CreditMatrix from '../components/CreditMatrix';
 import Marketplace from '../components/Marketplace';
-import type { CreditScoreResult, TransactionResult } from '../types';
+import type { CreditScoreResult, TransactionResult } from '../shared-types';
 
 /**
  * MarketplacePage Component.
