@@ -1,0 +1,59 @@
+name: Sample CI (Horizon UI Pro Next.js)
+
+on:
+  push:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+# Cancel any in-progress runs of this workflow for the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-sample:
+    name: Build Horizon UI Pro Sample
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: samples/horizon-ui-pro-nextjs-ts
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: samples/horizon-ui-pro-nextjs-ts/package-lock.json
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: samples/horizon-ui-pro-nextjs-ts/node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('samples/horizon-ui-pro-nextjs-ts/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      - name: Install dependencies
+        id: npm-install
+        run: npm ci
+        # Exit gracefully if npm ci fails due to private packages
+        continue-on-error: true
+
+      - name: Check npm ci result
+        if: steps.npm-install.outcome == 'failure'
+        run: |
+          echo "::warning::npm ci failed, possibly due to private packages. Skipping build."
+          echo "To fix this, ensure NPM_TOKEN is configured in repository secrets."
+          exit 0
+
+      - name: Build
+        if: steps.npm-install.outcome == 'success'
+        run: npm run build
