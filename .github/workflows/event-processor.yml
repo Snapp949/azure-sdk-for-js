@@ -1,5 +1,10 @@
 name: GitHub Event Processor
 
+# Concurrency settings to prevent redundant runs
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 on:
   issues:
     types: [edited, labeled, opened, reopened, unlabeled]
@@ -53,6 +58,15 @@ jobs:
       # To run github-event-processor built from source, for testing purposes, uncomment everything
       # in between the Start/End-Build From Source comments and comment everything in between the
       # Start/End-Install comments
+      #
+      # Cache: To speed up .NET tool installation, consider adding actions/cache for NuGet packages:
+      # - uses: actions/cache@v4
+      #   with:
+      #     path: ~/.nuget/packages
+      #     key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-nuget-
+      #
       # Start-Install
       - name: Install GitHub Event Processor
         run: >
@@ -113,6 +127,15 @@ jobs:
       # To run github-event-processor built from source, for testing purposes, uncomment everything
       # in between the Start/End-Build From Source comments and comment everything in between the
       # Start/End-Install comments
+      #
+      # Cache: To speed up .NET tool installation, consider adding actions/cache for NuGet packages:
+      # - uses: actions/cache@v4
+      #   with:
+      #     path: ~/.nuget/packages
+      #     key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-nuget-
+      #
       # Start-Install
       - name: Install GitHub Event Processor
         run: >
