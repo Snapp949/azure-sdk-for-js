@@ -1,0 +1,21 @@
+# NPM Authentication Template
+# Copy this file to .npmrc and replace YOUR_NPM_TOKEN_HERE with your actual token
+# NEVER commit the .npmrc file with your actual token!
+#
+# To get your NPM token:
+# 1. Log in to npmjs.com
+# 2. Go to Access Tokens in your account settings
+# 3. Generate a new token (Automation type recommended for CI/CD)
+#
+# For GitHub Codespaces:
+# - Add NPM_TOKEN as a Codespaces secret in your repository settings
+# - The devcontainer will automatically use it
+#
+# For local development:
+# - Set the NPM_TOKEN environment variable, or
+# - Copy this file to .npmrc and add your token directly
+
+//registry.npmjs.org/:_authToken=YOUR_NPM_TOKEN_HERE
+
+# Alternative: Use environment variable (recommended for CI/CD)
+# //registry.npmjs.org/:_authToken=${NPM_TOKEN}

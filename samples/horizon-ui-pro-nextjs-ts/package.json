@@ -1,0 +1,23 @@
+{
+  "name": "horizon-ui-pro-nextjs-ts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A sample Next.js + TypeScript app demonstrating Horizon UI Pro integration with a RULE native currency ecosystem demo API.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@horizon/ui-pro": "PRIVATE_PACKAGE_PLACEHOLDER",
+    "next": "^14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "typescript": "^5.3.3"
+  }
+}
