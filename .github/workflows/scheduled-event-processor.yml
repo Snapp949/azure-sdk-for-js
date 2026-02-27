@@ -19,6 +19,12 @@ on:
     # Note: GitHub uses UTC, to run at 10am PST, the cron task needs to be 6pm (1800 hours) UTC
     #       When scheduling for multiple days the numeric days 0-6 (0=Sunday) must be used.
     - cron: '0 18 * * 1,3,5'
+
+# Cancel any in-progress runs of this workflow
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 # This removes all unnecessary permissions, the ones needed will be set below.
 # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token
 permissions: {}
@@ -35,6 +41,14 @@ jobs:
       # in between the Start/End-Build From Source comments and comment everything in between the
       # Start/End-Install comments
       # Start-Install
+      # Caching: To cache dotnet tools, add the following step before Install GitHub Event Processor:
+      # - name: Cache dotnet tools
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~/.dotnet/tools
+      #     key: ${{ runner.os }}-dotnet-tools-${{ hashFiles('**/*.csproj') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-dotnet-tools-
       - name: Install GitHub Event Processor
         run: >
           dotnet tool install

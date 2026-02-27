@@ -12,6 +12,11 @@ on:
   pull_request_target:
     types: [closed, labeled, opened, reopened, review_requested, synchronize, unlabeled]
 
+# Cancel any in-progress runs of this workflow
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 # This removes all unnecessary permissions, the ones needed will be set below.
 # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token
 permissions: {}
@@ -54,6 +59,14 @@ jobs:
       # in between the Start/End-Build From Source comments and comment everything in between the
       # Start/End-Install comments
       # Start-Install
+      # Caching: To cache dotnet tools, add the following step before Install GitHub Event Processor:
+      # - name: Cache dotnet tools
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~/.dotnet/tools
+      #     key: ${{ runner.os }}-dotnet-tools-${{ hashFiles('**/*.csproj') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-dotnet-tools-
       - name: Install GitHub Event Processor
         run: >
           dotnet tool install
@@ -114,6 +127,14 @@ jobs:
       # in between the Start/End-Build From Source comments and comment everything in between the
       # Start/End-Install comments
       # Start-Install
+      # Caching: To cache dotnet tools, add the following step before Install GitHub Event Processor:
+      # - name: Cache dotnet tools
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: ~/.dotnet/tools
+      #     key: ${{ runner.os }}-dotnet-tools-${{ hashFiles('**/*.csproj') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-dotnet-tools-
       - name: Install GitHub Event Processor
         run: >
           dotnet tool install
